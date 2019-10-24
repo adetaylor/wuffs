@@ -1,0 +1,8 @@
+[package]
+name    = "bench_rust_lzw"
+version = "0.0.1"
+authors = ["Nigel Tao <nigeltao@golang.org>", "Adrian Taylor <adetaylor@chromium.org>"]
+
+[dependencies]
+lzw = "0.10"
+rustc_version_runtime = "*"
