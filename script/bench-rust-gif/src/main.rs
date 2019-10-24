@@ -60,7 +60,7 @@ fn main() {
     for i in 0..(1 + REPS) {
         bench(
             "1k_bw",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/pjw-thumbnail.gif"),
             i == 0, // warm_up
             32 * 32 * 1, // want_num_bytes
@@ -69,7 +69,7 @@ fn main() {
 
         bench(
             "1k_color",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/hippopotamus.regular.gif"),
             i == 0, // warm_up
             36 * 28 * 1, // want_num_bytes
@@ -78,7 +78,7 @@ fn main() {
 
         bench(
             "10k_bgra",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/hat.gif"),
             i == 0, // warm_up
             90 * 112 * 4, // want_num_bytes
@@ -87,7 +87,7 @@ fn main() {
 
         bench(
             "10k_indexed",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/hat.gif"),
             i == 0, // warm_up
             90 * 112 * 1, // want_num_bytes
@@ -96,7 +96,7 @@ fn main() {
 
         bench(
             "20k",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/bricks-gray.gif"),
             i == 0, // warm_up
             160 * 120 * 1, // want_num_bytes
@@ -105,7 +105,7 @@ fn main() {
 
         bench(
             "100k_artificial",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/hibiscus.primitive.gif"),
             i == 0, // warm_up
             312 * 442 * 1, // want_num_bytes
@@ -114,7 +114,7 @@ fn main() {
 
         bench(
             "100k_realistic",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/hibiscus.regular.gif"),
             i == 0, // warm_up
             312 * 442 * 1, // want_num_bytes
@@ -123,7 +123,7 @@ fn main() {
 
         bench(
             "1000k",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/harvesters.gif"),
             i == 0, // warm_up
             1165 * 859, // want_num_bytes
@@ -132,7 +132,7 @@ fn main() {
 
         bench(
             "anim_screencap",
-            &mut dst[..],
+            &mut dst,
             include_bytes!("../../../test/data/gifplayer-muybridge.gif"),
             i == 0, // warm_up
             4652198, // want_num_bytes
@@ -155,7 +155,7 @@ fn bench(
 
     let start = Instant::now();
     for _ in 0..iters {
-        let n = decode(&mut dst[..], src, output_32_bit_color);
+        let n = decode(dst, src, output_32_bit_color);
         if n != want_num_bytes {
             panic!("num_bytes: got {}, want {}", n, want_num_bytes);
         }
